@@ -1,0 +1,8 @@
+# Firmware build artifacts
+*.uf2
+*.hex
+*.bin
+.build/
+
+# OS cruft
+.DS_Store
