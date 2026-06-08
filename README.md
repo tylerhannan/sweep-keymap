@@ -27,7 +27,7 @@ A* S* D* F* G        H  J* K* L* '*
 Z  X  C  V  B        N  M  ,  .  /
       MO1 SPC        Ent MO2
 ```
-Home-row mods (GACS-ish): `A`=Ctrl `S`=Alt `D`=Gui `F`=Shift / `J`=Shift `K`=Gui `L`=Alt `'`=Ctrl
+Home-row mods (CAGS, pinky→index): `A`=Ctrl `S`=Alt `D`=Gui `F`=Shift / `J`=Shift `K`=Gui `L`=Alt `'`=Ctrl
 
 ### Layer 1: Numbers / Nav  (hold left thumb, MO1)
 ```
@@ -40,8 +40,8 @@ Esc ·  ·  ·  ·        ←  ↓  ↑  →  Bksp
 ### Layer 2: Symbols  (hold right thumb, MO2)
 ```
 !  @  #  $  %        ^  &  *  (  )
-;  +  -  =  _        ·  ·  ·  [  ]
-:  `  ~  |  \        ·  ·  ·  {  }
+:  +  -  =  _        ·  ·  ·  [  ]
+;  `  ~  |  \        ·  ·  ·  {  }
 ```
 Brackets stack vertically: open on the ring, close on the pinky, running round → square → curly.
 
@@ -57,7 +57,7 @@ Brackets stack vertically: open on the ring, close on the pinky, running round �
 - Operators left / brackets right so common code sequences (`= (`, `=>`, `: [`) alternate hands.
 - Vertical bracket stack: open on the ring, close on the pinky.
 - `=` on the left index (strongest finger), since it's the most-typed operator.
-- GACS mod order, with Shift on the index and Ctrl out on the pinky.
+- CAGS mod order (Ctrl-Alt-Gui-Shift, pinky→index), with Shift on the index and Ctrl out on the pinky.
 
 ## Settings (tap-hold)
 
@@ -121,6 +121,8 @@ Keep `sweep.vil` updated whenever you change layers, combos, or keymaps in the G
 Pending until I'm on a machine that can write to the board (work laptop blocks
 external media; flash from an unrestricted computer):
 
+- [ ] Upload the most recent `sweep.vil` export to the repo after any layout
+      change, so `vial/sweep.vil` always matches what's on the board.
 - [ ] Bind per-half bootloader keys: `QK_BOOT` on a left-hand Layer 1 key
       (bottom-left pinky) and a right-hand Layer 2 key (right `M`). Each half
       must reach it alone, since only the plugged-in half is live during flashing.
@@ -132,6 +134,16 @@ external media; flash from an unrestricted computer):
       `RALT_T(KC_L)`) to cut misfires; keep 250 elsewhere.
 - [ ] Optional: lower the term on the right thumb `ALL_T(KC_ENTER)` if Hyper feels
       sluggish for window shortcuts.
+- [ ] Verify the custom `get_tapping_term()` doesn't clash with Vial's QMK Settings
+      tapping-term slider: confirm both the per-key ~290 ms bump and the runtime
+      slider work after flashing (consider deriving the default from `TAPPING_TERM`).
+- [ ] Check whether `#define IGNORE_MOD_TAP_INTERRUPT` is still honored by current
+      `vial-qmk` (removed upstream ~0.20, likely a no-op now). If hold-on-interrupt
+      is actually wanted, switch to `PERMISSIVE_HOLD` / `HOLD_ON_OTHER_KEY_PRESS`.
+- [ ] Re-evaluate the `E+R` → Tab combo: `er` is a very common bigram and may
+      misfire on fast rolls. Shorten the combo term or move Tab to a cross-hand pair.
+- [ ] Remove the unused `TD0` tap-dance entry in Vial (the thumb uses
+      `ALL_T(KC_ENTER)` directly, so TD0 is dead config).
 
 ## Changelog
 

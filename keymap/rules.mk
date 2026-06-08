@@ -5,3 +5,8 @@ VIAL_ENABLE = yes
 
 # Runtime "Caps Word" toggle, also surfaced in Vial.
 CAPS_WORD_ENABLE = yes
+
+# Layer 3 uses mouse keys (KC_BTN*/KC_MS_*/KC_WH_*) and consumer/media keys
+# (volume + transport), which need these enabled to function.
+MOUSEKEY_ENABLE = yes
+EXTRAKEY_ENABLE = yes
