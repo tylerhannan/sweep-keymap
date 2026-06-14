@@ -17,23 +17,25 @@
 #define VIAL_KEY_OVERRIDE_ENTRIES 32
 
 /*
- * Global tap-hold tuning. Because TAPPING_TERM_PER_KEY is defined, QMK resolves
- * the tapping term through get_tapping_term() in keymap.c, which is therefore
- * authoritative. (QMK Settings is on, but its tapping-term slider is overridden
- * by the per-key function; the other QMK Settings toggles still apply.)
+ * Tap-hold tuning. The tapping term is owned by vial-qmk (quantum/vial.c
+ * defines get_tapping_term() under TAPPING_TERM_PER_KEY) and is adjustable at
+ * runtime from Vial's QMK Settings; TAPPING_TERM below is its reset/default.
  */
 
-// Baseline tapping term; per-key overrides live in keymap.c (get_tapping_term).
+// Default/reset value for the runtime (Vial QMK Settings) tapping term.
 #define TAPPING_TERM 250
 
-// Required for get_tapping_term() to be consulted at all; without it the
-// per-key overrides in keymap.c are silently ignored. Guarded because the
-// ferris/sweep keyboard config already enables it.
+// Keep TAPPING_TERM_PER_KEY defined so QMK routes the term through vial.c's
+// get_tapping_term(), which is what makes the Vial QMK Settings slider (and
+// per-tap-dance custom terms) take effect. Guarded because the ferris/sweep
+// keyboard config already enables it. Do NOT define get_tapping_term() in
+// keymap.c (it collides with vial.c's). See docs/per-finger-tapping-term.md.
 #ifndef TAPPING_TERM_PER_KEY
 #    define TAPPING_TERM_PER_KEY
 #endif
 
-// Permissive Hold intentionally left undefined (off).
+// Permissive Hold intentionally left undefined (off); toggle it at runtime in
+// Vial's QMK Settings if pinky/ring mods misfire.
 
 // Note: IGNORE_MOD_TAP_INTERRUPT was removed from QMK; its behavior (don't
 // select the hold action on interrupt) is now the default for mod-taps.

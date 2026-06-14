@@ -65,10 +65,14 @@ Tuned to minimize accidental home-row mods:
 
 | Setting | Value |
 |---|---|
-| Tapping Term | 250 ms (global), 290 ms on weak-finger mods |
-| Permissive Hold | off |
+| Tapping Term | 250 ms global, adjustable live in Vial (QMK Settings) |
+| Permissive Hold | off (toggle in Vial if weak-finger mods misfire) |
 | Mod-tap interrupt | QMK default (hold not selected on interrupt) |
 | Retro Tapping | off |
+
+The tapping term is a single global value, tunable at runtime from Vial's QMK
+Settings (no reflash). A static per-finger split (longer term on the pinky/ring
+mods) is a documented follow-up — see [`docs/per-finger-tapping-term.md`](docs/per-finger-tapping-term.md).
 
 Combos: `E+R` → Tab, `I+O` → Bksp
 Right outer thumb: `ALL_T(KC_ENTER)`, tap = Enter, hold = Hyper (window management on macOS)
@@ -79,7 +83,6 @@ These live in code rather than the Vial GUI. The source is committed here (`keym
 but it only takes effect once the next firmware build is flashed (see *TODO* below):
 
 - Caps Word: `CAPS_WORD_ENABLE = yes` in `rules.mk`, bound to `CW_TOGG`. Auto-ends on space, so it's good for `SCREAMING_SNAKE_CASE`.
-- Per-key tapping terms: `get_tapping_term()` in `keymap.c`, with higher terms on the pinky (Ctrl) and ring (Alt) keys to cut misfires.
 - Bootloader keys: covered under Flashing.
 
 ## Flashing
@@ -144,15 +147,16 @@ external media; flash from an unrestricted computer):
 - [ ] Enable Caps Word: `CAPS_WORD_ENABLE = yes` in `rules.mk`, bound to `CW_TOGG`.
       Auto-ends on space; good for `SCREAMING_SNAKE_CASE`. (Not in current firmware,
       so the keycode won't bind in Vial until this build is flashed.)
-- [ ] Add per-key tapping terms via `get_tapping_term()`: raise the term (~290) on
-      the pinky/ring mods (`LCTL_T(KC_A)`, `RCTL_T(KC_QUOTE)`, `LALT_T(KC_S)`,
-      `RALT_T(KC_L)`) to cut misfires; keep 250 elsewhere.
-- [ ] Optional: lower the term on the right thumb `ALL_T(KC_ENTER)` if Hyper feels
-      sluggish for window shortcuts.
-- [x] Resolve the `get_tapping_term()` vs. QMK Settings question: because
-      `TAPPING_TERM_PER_KEY` is defined, QMK routes the tapping term through
-      `get_tapping_term()` in `keymap.c` (it's authoritative). QMK Settings stays
-      on, but its tapping-term slider is a no-op here; its other toggles still apply.
+- [ ] Optional follow-up — static per-finger tapping terms: tune the global term
+      live in Vial first; if the pinky/ring mods still misfire, switch to a static
+      split (~290 ms on `LCTL_T(KC_A)`, `RCTL_T(KC_QUOTE)`, `LALT_T(KC_S)`,
+      `RALT_T(KC_L)`). Requires a one-line vial-qmk patch — see
+      [`docs/per-finger-tapping-term.md`](docs/per-finger-tapping-term.md).
+- [x] Resolve the `get_tapping_term()` vs. QMK Settings question: vial-qmk's
+      `quantum/vial.c` owns a non-`weak` `get_tapping_term()` (it wires up the
+      QMK Settings runtime slider + per-tap-dance terms), so a keymap-level
+      override collides at link time. Dropped the custom function; the term is now
+      a single global value tunable live in Vial.
 - [x] Remove `IGNORE_MOD_TAP_INTERRUPT` — deleted from QMK; its behavior (don't
       select hold on interrupt) is now the default. If hold-on-interrupt is ever
       wanted, switch to `PERMISSIVE_HOLD` / `HOLD_ON_OTHER_KEY_PRESS`.
@@ -166,3 +170,4 @@ external media; flash from an unrestricted computer):
 - _2026-06-08_ Initial commit: layout, tap-hold tuning, symbol layer.
 - _2026-06-14_ Bound per-half `QK_BOOT` keys, removed the stray Layer 3 `RGUI`, and cleared the unused `TD0`.
 - _2026-06-14_ Set `CONVERT_TO=helios` in `rules.mk` so the build always targets the RP2040 Helios; reverted the AVR-only workarounds (LTO, `QMK_SETTINGS=no`, 8-entry Vial caps) now that we build for the correct MCU.
+- _2026-06-14_ Removed the custom `get_tapping_term()` (it collided with vial-qmk's own definition); the tapping term is now a single global value, tunable live in Vial. Static per-finger split documented as a follow-up.

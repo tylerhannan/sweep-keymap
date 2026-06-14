@@ -34,18 +34,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-// Give the weak-finger home-row mods a longer tapping term to reduce misfires.
-// Uses the TAPPING_TERM constant (250 -> 290 on the weak fingers). Reconciling
-// this with Vial's runtime tapping-term setting is tracked in the TODO; using
-// g_tapping_term here would require DYNAMIC_TAPPING_TERM_ENABLE.
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case LCTL_T(KC_A):
-        case RCTL_T(KC_QUOTE):
-        case LALT_T(KC_S):
-        case RALT_T(KC_L):
-            return TAPPING_TERM + 40;
-        default:
-            return TAPPING_TERM;
-    }
-}
+/*
+ * No get_tapping_term() here: vial-qmk's quantum/vial.c already defines a
+ * (non-weak) get_tapping_term() under TAPPING_TERM_PER_KEY, which routes the
+ * tapping term through the Vial QMK Settings slider (runtime-adjustable) and
+ * per-tap-dance custom terms. Defining one here would collide at link time.
+ * The TAPPING_TERM in config.h is the reset/default value for that slider.
+ *
+ * To restore a static per-finger split instead, see docs/per-finger-tapping-term.md.
+ */
