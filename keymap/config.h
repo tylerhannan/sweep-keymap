@@ -12,8 +12,11 @@
 #define TAPPING_TERM 250
 
 // Required for get_tapping_term() to be consulted at all; without it the
-// per-key overrides in keymap.c are silently ignored.
-#define TAPPING_TERM_PER_KEY
+// per-key overrides in keymap.c are silently ignored. Guarded because the
+// ferris/sweep keyboard config already enables it.
+#ifndef TAPPING_TERM_PER_KEY
+#    define TAPPING_TERM_PER_KEY
+#endif
 
 // Permissive Hold intentionally left undefined (off).
 
