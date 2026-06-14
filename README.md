@@ -99,7 +99,7 @@ Then per half:
 1. Plug in one half via USB.
 2. Enter bootloader in software (no buttons, since the controller is flush):
    - Left half: hold left thumb (MO1) → Layer 1 → tap the bootloader key (bottom-left pinky).
-   - Right half: hold right thumb (MO2) → Layer 2 → tap the bootloader key (right `M` position).
+   - Right half: hold right thumb (MO2) → Layer 2 → tap the bootloader key (innermost bottom-row key).
    - Keycode is `QK_BOOT` ("Bootloader" in Vial), not `QK_REBOOT`.
 3. The `RPI-RP2` drive mounts; copy the `.uf2` onto it. It reboots into the new firmware.
 4. Repeat for the other half.
@@ -115,6 +115,20 @@ If a flash wipes the on-board keymap or anything looks off:
 2. File → Import → `vial/sweep.vil`.
 
 Keep `sweep.vil` updated whenever you change layers, combos, or keymaps in the GUI.
+
+## Applying the layout to both halves
+
+The Vial layout lives in **each half's own EEPROM**, written live over USB (HID, so
+no flashing — this works even on a machine that blocks external media). For daily
+typing only the USB-connected (master) half needs it, **but each half must carry
+`QK_BOOT` to enter the bootloader when it's flashed alone** — so apply `sweep.vil`
+to both before relying on per-half flashing:
+
+1. Plug in the **left** half alone → Vial → File → Import → `vial/sweep.vil`.
+2. Plug in the **right** half alone → Vial → Import → `vial/sweep.vil` again.
+
+`QK_BOOT` is a standard keycode that also works on the *current* firmware, so do this
+first — it's what gets you into the bootloader to flash the new build.
 
 ## TODO (next firmware build)
 
