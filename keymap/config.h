@@ -17,11 +17,9 @@
 #define VIAL_KEY_OVERRIDE_ENTRIES 8
 
 /*
- * Global tap-hold tuning.
- *
- * These are baseline/compile-time defaults. With Vial, the global tap-hold
- * settings (tapping term, permissive hold, etc.) are also editable at runtime
- * from the Vial GUI, so changes here are mostly a sensible starting point.
+ * Global tap-hold tuning (compile-time). QMK_SETTINGS is disabled (see
+ * rules.mk), so these are not runtime-editable from Vial; the per-key overrides
+ * in keymap.c are authoritative.
  */
 
 // Baseline tapping term; per-key overrides live in keymap.c (get_tapping_term).
