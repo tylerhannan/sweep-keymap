@@ -40,11 +40,11 @@ Esc ·  ·  ·  ·        ←  ↓  ↑  →  Bksp
 ### Layer 2: Symbols  (hold right thumb, MO2)
 ```
 !  @  #  $  %        ^  &  *  (  )
-:  +  -  =  _        CW ·  ·  [  ]
+:  +  -  =  _        ·  CW ·  [  ]
 ;  `  ~  |  \        ·  ·  ·  {  }
 ```
 Brackets stack vertically: open on the ring, close on the pinky, running round → square → curly.
-`CW` (right index) = Caps Word toggle (`CW_TOGG`).
+`CW` (right index home, `J` position) = Caps Word toggle (`CW_TOGG`).
 
 ### Layer 3: Mouse / Media  (MO1 + MO3)
 ```
@@ -77,7 +77,7 @@ runtime QMK Setting) to favour intended chords on the home-row mods. A static
 per-finger split (longer term on the pinky/ring mods) is a documented
 follow-up — see [`docs/per-finger-tapping-term.md`](docs/per-finger-tapping-term.md).
 
-Combos: `E+R` → Tab, `I+O` → Bksp
+Combos: `Q+W` → Tab, `I+O` → Bksp
 Right inner thumb: `ALL_T(KC_ENTER)`, tap = Enter, hold = Hyper (window management on macOS); outer thumb = `MO2`. This mirrors the left (outer = `MO1`, inner = Space).
 
 ## Firmware-only customizations
@@ -163,8 +163,9 @@ external media; flash from an unrestricted computer):
 - [x] Remove `IGNORE_MOD_TAP_INTERRUPT` — deleted from QMK; its behavior (don't
       select hold on interrupt) is now the default. If hold-on-interrupt is ever
       wanted, switch to `PERMISSIVE_HOLD` / `HOLD_ON_OTHER_KEY_PRESS`.
-- [ ] Re-evaluate the `E+R` → Tab combo: `er` is a very common bigram and may
-      misfire on fast rolls. Shorten the combo term or move Tab to a cross-hand pair.
+- [x] Re-evaluate the `E+R` → Tab combo (`er` is a top English bigram on the
+      synchronized index+middle pair, so it misfired): moved Tab to `Q+W`, a
+      rare bigram that stays one-handed (left) for use with the mouse hand.
 - [x] Remove the unused `TD0` tap-dance entry in Vial (the thumb uses
       `ALL_T(KC_ENTER)` directly, so TD0 is dead config).
 
@@ -176,3 +177,4 @@ external media; flash from an unrestricted computer):
 - _2026-06-14_ Removed the custom `get_tapping_term()` (it collided with vial-qmk's own definition); the tapping term is now a single global value, tunable live in Vial. Static per-finger split documented as a follow-up.
 - _2026-06-14_ Fixed a mirrored right half: the original `.vil` export had the right-hand columns (alphas rows 4–6 and the two thumbs) entered in reverse order, so the right side typed mirrored. Reversed them in `vial/sweep.vil` and regenerated `keymap.c` to match the firmware's `LAYOUT_split_3x5_2` matrix (right index = innermost).
 - _2026-06-14_ Bound Caps Word (`CW_TOGG`) on Layer 2; enabled Permissive Hold and set the tapping term to 275 ms (both runtime QMK Settings, persisted in `sweep.vil`). Aligned the compile-time `TAPPING_TERM` default to 275.
+- _2026-06-14_ Moved the Tab combo from `E+R` (a common, misfire-prone bigram) to `Q+W`, and relocated Caps Word to the right index home key.
