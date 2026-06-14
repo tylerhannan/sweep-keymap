@@ -20,5 +20,5 @@
 
 // Permissive Hold intentionally left undefined (off).
 
-// Treat a mod-tap as a tap if another key is pressed/released during the term.
-#define IGNORE_MOD_TAP_INTERRUPT
+// Note: IGNORE_MOD_TAP_INTERRUPT was removed from QMK; its behavior (don't
+// select the hold action on interrupt) is now the default for mod-taps.

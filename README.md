@@ -65,9 +65,9 @@ Tuned to minimize accidental home-row mods:
 
 | Setting | Value |
 |---|---|
-| Tapping Term | 250 ms (global) |
+| Tapping Term | 250 ms (global), 290 ms on weak-finger mods |
 | Permissive Hold | off |
-| Ignore Mod Tap Interrupt | on |
+| Mod-tap interrupt | QMK default (hold not selected on interrupt) |
 | Retro Tapping | off |
 
 Combos: `E+R` → Tab, `I+O` → Bksp
@@ -151,9 +151,9 @@ external media; flash from an unrestricted computer):
 - [ ] Verify the custom `get_tapping_term()` doesn't clash with Vial's QMK Settings
       tapping-term slider: confirm both the per-key ~290 ms bump and the runtime
       slider work after flashing (consider deriving the default from `TAPPING_TERM`).
-- [ ] Check whether `#define IGNORE_MOD_TAP_INTERRUPT` is still honored by current
-      `vial-qmk` (removed upstream ~0.20, likely a no-op now). If hold-on-interrupt
-      is actually wanted, switch to `PERMISSIVE_HOLD` / `HOLD_ON_OTHER_KEY_PRESS`.
+- [x] Remove `IGNORE_MOD_TAP_INTERRUPT` — deleted from QMK; its behavior (don't
+      select hold on interrupt) is now the default. If hold-on-interrupt is ever
+      wanted, switch to `PERMISSIVE_HOLD` / `HOLD_ON_OTHER_KEY_PRESS`.
 - [ ] Re-evaluate the `E+R` → Tab combo: `er` is a very common bigram and may
       misfire on fast rolls. Shorten the combo term or move Tab to a cross-hand pair.
 - [x] Remove the unused `TD0` tap-dance entry in Vial (the thumb uses
