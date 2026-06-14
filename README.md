@@ -75,7 +75,7 @@ Settings (no reflash). A static per-finger split (longer term on the pinky/ring
 mods) is a documented follow-up — see [`docs/per-finger-tapping-term.md`](docs/per-finger-tapping-term.md).
 
 Combos: `E+R` → Tab, `I+O` → Bksp
-Right outer thumb: `ALL_T(KC_ENTER)`, tap = Enter, hold = Hyper (window management on macOS)
+Right inner thumb: `ALL_T(KC_ENTER)`, tap = Enter, hold = Hyper (window management on macOS); outer thumb = `MO2`. This mirrors the left (outer = `MO1`, inner = Space).
 
 ## Firmware-only customizations
 
@@ -171,3 +171,4 @@ external media; flash from an unrestricted computer):
 - _2026-06-14_ Bound per-half `QK_BOOT` keys, removed the stray Layer 3 `RGUI`, and cleared the unused `TD0`.
 - _2026-06-14_ Set `CONVERT_TO=helios` in `rules.mk` so the build always targets the RP2040 Helios; reverted the AVR-only workarounds (LTO, `QMK_SETTINGS=no`, 8-entry Vial caps) now that we build for the correct MCU.
 - _2026-06-14_ Removed the custom `get_tapping_term()` (it collided with vial-qmk's own definition); the tapping term is now a single global value, tunable live in Vial. Static per-finger split documented as a follow-up.
+- _2026-06-14_ Fixed a mirrored right half: the original `.vil` export had the right-hand columns (alphas rows 4–6 and the two thumbs) entered in reverse order, so the right side typed mirrored. Reversed them in `vial/sweep.vil` and regenerated `keymap.c` to match the firmware's `LAYOUT_split_3x5_2` matrix (right index = innermost).
