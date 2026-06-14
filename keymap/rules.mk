@@ -1,4 +1,9 @@
 # Vial keymap for the Ferris Sweep (built with vial-qmk).
+
+# Target the 0xCB Helios (RP2040) controller. Baking this in means the build
+# always targets the right MCU even if a -e CONVERT_TO=... flag is mistyped.
+CONVERT_TO = helios
+
 # VIA is a prerequisite for VIAL; both must be enabled for a Vial keymap.
 VIA_ENABLE = yes
 VIAL_ENABLE = yes
