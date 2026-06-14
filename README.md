@@ -92,7 +92,8 @@ qmk setup   # or clone vial-qmk and point qmk at it
 cp -r keymap vial-qmk/keyboards/ferris/sweep/keymaps/<me>
 
 # build (produces a .uf2)
-qmk compile -kb ferris/sweep -km <me> -e CONVERT_TO=helios
+# CONVERT_TO=helios is set in rules.mk, so no -e flag is needed.
+qmk compile -kb ferris/sweep -km <me>
 ```
 
 Then per half:
@@ -148,9 +149,10 @@ external media; flash from an unrestricted computer):
       `RALT_T(KC_L)`) to cut misfires; keep 250 elsewhere.
 - [ ] Optional: lower the term on the right thumb `ALL_T(KC_ENTER)` if Hyper feels
       sluggish for window shortcuts.
-- [ ] Verify the custom `get_tapping_term()` doesn't clash with Vial's QMK Settings
-      tapping-term slider: confirm both the per-key ~290 ms bump and the runtime
-      slider work after flashing (consider deriving the default from `TAPPING_TERM`).
+- [x] Resolve the `get_tapping_term()` vs. QMK Settings question: because
+      `TAPPING_TERM_PER_KEY` is defined, QMK routes the tapping term through
+      `get_tapping_term()` in `keymap.c` (it's authoritative). QMK Settings stays
+      on, but its tapping-term slider is a no-op here; its other toggles still apply.
 - [x] Remove `IGNORE_MOD_TAP_INTERRUPT` — deleted from QMK; its behavior (don't
       select hold on interrupt) is now the default. If hold-on-interrupt is ever
       wanted, switch to `PERMISSIVE_HOLD` / `HOLD_ON_OTHER_KEY_PRESS`.
@@ -163,3 +165,4 @@ external media; flash from an unrestricted computer):
 
 - _2026-06-08_ Initial commit: layout, tap-hold tuning, symbol layer.
 - _2026-06-14_ Bound per-half `QK_BOOT` keys, removed the stray Layer 3 `RGUI`, and cleared the unused `TD0`.
+- _2026-06-14_ Set `CONVERT_TO=helios` in `rules.mk` so the build always targets the RP2040 Helios; reverted the AVR-only workarounds (LTO, `QMK_SETTINGS=no`, 8-entry Vial caps) now that we build for the correct MCU.

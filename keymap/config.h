@@ -12,14 +12,15 @@
 #define VIAL_UNLOCK_COMBO_COLS { 0, 1, 0, 2, 4 }
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 4
-#define VIAL_TAP_DANCE_ENTRIES 8
-#define VIAL_COMBO_ENTRIES 8
-#define VIAL_KEY_OVERRIDE_ENTRIES 8
+#define VIAL_TAP_DANCE_ENTRIES 32
+#define VIAL_COMBO_ENTRIES 32
+#define VIAL_KEY_OVERRIDE_ENTRIES 32
 
 /*
- * Global tap-hold tuning (compile-time). QMK_SETTINGS is disabled (see
- * rules.mk), so these are not runtime-editable from Vial; the per-key overrides
- * in keymap.c are authoritative.
+ * Global tap-hold tuning. Because TAPPING_TERM_PER_KEY is defined, QMK resolves
+ * the tapping term through get_tapping_term() in keymap.c, which is therefore
+ * authoritative. (QMK Settings is on, but its tapping-term slider is overridden
+ * by the per-key function; the other QMK Settings toggles still apply.)
  */
 
 // Baseline tapping term; per-key overrides live in keymap.c (get_tapping_term).

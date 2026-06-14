@@ -8,14 +8,6 @@ CONVERT_TO = helios
 VIA_ENABLE = yes
 VIAL_ENABLE = yes
 
-# LTO keeps the firmware within the flash region.
-LTO_ENABLE = yes
-
-# QMK Settings off: it would define its own get_tapping_term() (colliding with
-# ours) and bloats the build. With it off, our per-key get_tapping_term() in
-# keymap.c is the sole authority (no runtime tapping-term slider in Vial).
-QMK_SETTINGS = no
-
 # Runtime "Caps Word" toggle, also surfaced in Vial.
 CAPS_WORD_ENABLE = yes
 
