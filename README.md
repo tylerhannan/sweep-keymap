@@ -48,7 +48,7 @@ Brackets stack vertically: open on the ring, close on the pinky, running round �
 ### Layer 3: Mouse / Media  (MO1 + MO3)
 ```
 ·  M1 M↑ M2 WhD       ·    Next Vol+ ·   ·
-·  M← M↓ M→ WhU       ·    Prev Play RGui ·
+·  M← M↓ M→ WhU       ·    Prev Play ·    ·
 ·  ·  ·  ·  ·         ·    ·    Vol- ·   ·
 ```
 
@@ -123,9 +123,9 @@ external media; flash from an unrestricted computer):
 
 - [ ] Upload the most recent `sweep.vil` export to the repo after any layout
       change, so `vial/sweep.vil` always matches what's on the board.
-- [ ] Bind per-half bootloader keys: `QK_BOOT` on a left-hand Layer 1 key
-      (bottom-left pinky) and a right-hand Layer 2 key (right `M`). Each half
-      must reach it alone, since only the plugged-in half is live during flashing.
+- [x] Bind per-half bootloader keys: `QK_BOOT` on a left-hand Layer 1 key
+      (bottom-left pinky) and a right-hand Layer 2 key (innermost bottom-row key).
+      Each half can reach it alone, since only the plugged-in half is live during flashing.
 - [ ] Enable Caps Word: `CAPS_WORD_ENABLE = yes` in `rules.mk`, bound to `CW_TOGG`.
       Auto-ends on space; good for `SCREAMING_SNAKE_CASE`. (Not in current firmware,
       so the keycode won't bind in Vial until this build is flashed.)
@@ -142,9 +142,10 @@ external media; flash from an unrestricted computer):
       is actually wanted, switch to `PERMISSIVE_HOLD` / `HOLD_ON_OTHER_KEY_PRESS`.
 - [ ] Re-evaluate the `E+R` → Tab combo: `er` is a very common bigram and may
       misfire on fast rolls. Shorten the combo term or move Tab to a cross-hand pair.
-- [ ] Remove the unused `TD0` tap-dance entry in Vial (the thumb uses
+- [x] Remove the unused `TD0` tap-dance entry in Vial (the thumb uses
       `ALL_T(KC_ENTER)` directly, so TD0 is dead config).
 
 ## Changelog
 
 - _2026-06-08_ Initial commit: layout, tap-hold tuning, symbol layer.
+- _2026-06-14_ Bound per-half `QK_BOOT` keys, removed the stray Layer 3 `RGUI`, and cleared the unused `TD0`.
