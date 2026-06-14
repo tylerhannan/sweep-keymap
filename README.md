@@ -40,10 +40,11 @@ Esc ·  ·  ·  ·        ←  ↓  ↑  →  Bksp
 ### Layer 2: Symbols  (hold right thumb, MO2)
 ```
 !  @  #  $  %        ^  &  *  (  )
-:  +  -  =  _        ·  ·  ·  [  ]
+:  +  -  =  _        CW ·  ·  [  ]
 ;  `  ~  |  \        ·  ·  ·  {  }
 ```
 Brackets stack vertically: open on the ring, close on the pinky, running round → square → curly.
+`CW` (right index) = Caps Word toggle (`CW_TOGG`).
 
 ### Layer 3: Mouse / Media  (MO1 + MO3)
 ```
@@ -144,9 +145,9 @@ external media; flash from an unrestricted computer):
 - [x] Bind per-half bootloader keys: `QK_BOOT` on a left-hand Layer 1 key
       (bottom-left pinky) and a right-hand Layer 2 key (innermost bottom-row key).
       Each half can reach it alone, since only the plugged-in half is live during flashing.
-- [ ] Enable Caps Word: `CAPS_WORD_ENABLE = yes` in `rules.mk`, bound to `CW_TOGG`.
-      Auto-ends on space; good for `SCREAMING_SNAKE_CASE`. (Not in current firmware,
-      so the keycode won't bind in Vial until this build is flashed.)
+- [x] Enable Caps Word: `CAPS_WORD_ENABLE = yes` in `rules.mk`, flashed and
+      bound to `CW_TOGG` on Layer 2 (right index). Auto-ends on space; good for
+      `SCREAMING_SNAKE_CASE`.
 - [ ] Optional follow-up — static per-finger tapping terms: tune the global term
       live in Vial first; if the pinky/ring mods still misfire, switch to a static
       split (~290 ms on `LCTL_T(KC_A)`, `RCTL_T(KC_QUOTE)`, `LALT_T(KC_S)`,
