@@ -66,14 +66,16 @@ Tuned to minimize accidental home-row mods:
 
 | Setting | Value |
 |---|---|
-| Tapping Term | 250 ms global, adjustable live in Vial (QMK Settings) |
-| Permissive Hold | off (toggle in Vial if weak-finger mods misfire) |
+| Tapping Term | 275 ms (set live in Vial; compile-time default 275) |
+| Permissive Hold | on (runtime, via QMK Settings) |
 | Mod-tap interrupt | QMK default (hold not selected on interrupt) |
 | Retro Tapping | off |
 
 The tapping term is a single global value, tunable at runtime from Vial's QMK
-Settings (no reflash). A static per-finger split (longer term on the pinky/ring
-mods) is a documented follow-up — see [`docs/per-finger-tapping-term.md`](docs/per-finger-tapping-term.md).
+Settings (no reflash); currently 275 ms. Permissive Hold is enabled (also a
+runtime QMK Setting) to favour intended chords on the home-row mods. A static
+per-finger split (longer term on the pinky/ring mods) is a documented
+follow-up — see [`docs/per-finger-tapping-term.md`](docs/per-finger-tapping-term.md).
 
 Combos: `E+R` → Tab, `I+O` → Bksp
 Right inner thumb: `ALL_T(KC_ENTER)`, tap = Enter, hold = Hyper (window management on macOS); outer thumb = `MO2`. This mirrors the left (outer = `MO1`, inner = Space).
@@ -173,3 +175,4 @@ external media; flash from an unrestricted computer):
 - _2026-06-14_ Set `CONVERT_TO=helios` in `rules.mk` so the build always targets the RP2040 Helios; reverted the AVR-only workarounds (LTO, `QMK_SETTINGS=no`, 8-entry Vial caps) now that we build for the correct MCU.
 - _2026-06-14_ Removed the custom `get_tapping_term()` (it collided with vial-qmk's own definition); the tapping term is now a single global value, tunable live in Vial. Static per-finger split documented as a follow-up.
 - _2026-06-14_ Fixed a mirrored right half: the original `.vil` export had the right-hand columns (alphas rows 4–6 and the two thumbs) entered in reverse order, so the right side typed mirrored. Reversed them in `vial/sweep.vil` and regenerated `keymap.c` to match the firmware's `LAYOUT_split_3x5_2` matrix (right index = innermost).
+- _2026-06-14_ Bound Caps Word (`CW_TOGG`) on Layer 2; enabled Permissive Hold and set the tapping term to 275 ms (both runtime QMK Settings, persisted in `sweep.vil`). Aligned the compile-time `TAPPING_TERM` default to 275.

@@ -23,7 +23,8 @@
  */
 
 // Default/reset value for the runtime (Vial QMK Settings) tapping term.
-#define TAPPING_TERM 250
+// Tuned to 275 ms after testing; adjust live in Vial, this is just the reset.
+#define TAPPING_TERM 275
 
 // Keep TAPPING_TERM_PER_KEY defined so QMK routes the term through vial.c's
 // get_tapping_term(), which is what makes the Vial QMK Settings slider (and
@@ -34,8 +35,8 @@
 #    define TAPPING_TERM_PER_KEY
 #endif
 
-// Permissive Hold intentionally left undefined (off); toggle it at runtime in
-// Vial's QMK Settings if pinky/ring mods misfire.
+// Permissive Hold is not set at compile time; it's controlled at runtime via
+// Vial's QMK Settings and is currently enabled (favours intended home-row chords).
 
 // Note: IGNORE_MOD_TAP_INTERRUPT was removed from QMK; its behavior (don't
 // select the hold action on interrupt) is now the default for mod-taps.
