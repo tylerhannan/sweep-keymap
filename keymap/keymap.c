@@ -4,7 +4,8 @@
  * Compile-time default layout. The live layout is managed in Vial
  * (vial/sweep.vil) and stored in EEPROM, which overrides this at runtime.
  * QMK still requires keymaps[] to exist, so this serves as the fallback that
- * seeds a fresh/reset EEPROM; it is generated to mirror sweep.vil.
+ * seeds a fresh/reset EEPROM; it is generated to mirror sweep.vil (with the
+ * deprecated keycode aliases mapped to current QMK names).
  */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x5_2(
@@ -15,19 +16,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [1] = LAYOUT_split_3x5_2(
         KC_1, KC_2, KC_3, KC_4, KC_5, KC_0, KC_9, KC_8, KC_7, KC_6,
-        KC_ESCAPE, KC_NO, KC_NO, KC_NO, KC_NO, KC_BSPACE, KC_RIGHT, KC_UP, KC_DOWN, KC_LEFT,
+        KC_ESCAPE, KC_NO, KC_NO, KC_NO, KC_NO, KC_BSPC, KC_RIGHT, KC_UP, KC_DOWN, KC_LEFT,
         QK_BOOT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_TRNS, MO(3), KC_TRNS
     ),
     [2] = LAYOUT_split_3x5_2(
         LSFT(KC_1), LSFT(KC_2), LSFT(KC_3), LSFT(KC_4), LSFT(KC_5), LSFT(KC_0), LSFT(KC_9), LSFT(KC_8), LSFT(KC_7), LSFT(KC_6),
-        LSFT(KC_SCOLON), LSFT(KC_EQUAL), KC_MINUS, KC_EQUAL, LSFT(KC_MINUS), KC_RBRACKET, KC_LBRACKET, KC_NO, KC_NO, KC_NO,
-        KC_SCOLON, KC_GRAVE, LSFT(KC_GRAVE), LSFT(KC_BSLASH), KC_BSLASH, LSFT(KC_RBRACKET), LSFT(KC_LBRACKET), KC_NO, KC_NO, QK_BOOT,
+        LSFT(KC_SCLN), LSFT(KC_EQUAL), KC_MINUS, KC_EQUAL, LSFT(KC_MINUS), KC_RBRC, KC_LBRC, KC_NO, KC_NO, KC_NO,
+        KC_SCLN, KC_GRAVE, LSFT(KC_GRAVE), LSFT(KC_BSLS), KC_BSLS, LSFT(KC_RBRC), LSFT(KC_LBRC), KC_NO, KC_NO, QK_BOOT,
         MO(3), KC_TRNS, KC_TRNS, KC_TRNS
     ),
     [3] = LAYOUT_split_3x5_2(
-        KC_NO, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_D, KC_NO, KC_MFFD, KC_VOLU, KC_NO, KC_NO,
-        KC_NO, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_U, KC_NO, KC_MRWD, KC_MPLY, KC_NO, KC_NO,
+        KC_NO, MS_BTN1, MS_UP, MS_BTN2, MS_WHLD, KC_NO, KC_MFFD, KC_VOLU, KC_NO, KC_NO,
+        KC_NO, MS_LEFT, MS_DOWN, MS_RGHT, MS_WHLU, KC_NO, KC_MRWD, KC_MPLY, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_VOLD, KC_NO, KC_NO,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
     )
