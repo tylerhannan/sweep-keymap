@@ -30,38 +30,14 @@ The drawing is generated from `vial/sweep.vil` with [keymap-drawer](https://gith
 A GitHub Action redraws it whenever the `.vil` changes; to redraw locally, run `uv run scripts/draw_keymap.py`.
 Labels live in `keymap_drawer.config.yaml`.
 
-### Layer 0: Base
-```
-Q  W  E  R  T        Y  U  I  O  P
-A* S* D* F* G        H  J* K* L* '*
-Z  X  C  V  B        N  M  ,  .  /
-      MO1 SPC        Ent MO2
-```
-Home-row mods (CAGS, pinky→index): `A`=Ctrl `S`=Alt `D`=Gui `F`=Shift / `J`=Shift `K`=Gui `L`=Alt `'`=Ctrl
+Getting to each layer:
 
-### Layer 1: Numbers / Nav  (hold left thumb, MO1)
-```
-1   2  3  4  5        6  7  8  9  0
-Esc ·  ·  ·  ·        ←  ↓  ↑  →  Bksp
-·   ·  ·  ·  ·        ·  ·  ·  ·  ·
-      MO1 SPC         Ent MO3
-```
+- Nav (numbers and arrows): hold the left inner thumb (`MO1`).
+- Sym: hold the right inner thumb (`MO2`).
+- Mouse / Media: hold both layer thumbs (`MO3` sits on the other thumb in Nav and Sym).
 
-### Layer 2: Symbols  (hold right thumb, MO2)
-```
-!  @  #  $  %        ^  &  *  (  )
-:  _  -  =  +        ·  CW ·  [  ]
-;  ~  `  \  |        ·  ·  ·  {  }
-```
-Brackets stack vertically: open on the ring, close on the pinky, running round → square → curly.
-`CW` (right index home, `J` position) = Caps Word toggle (`CW_TOGG`).
-
-### Layer 3: Mouse / Media  (MO1 + MO3)
-```
-·  M1 M↑ M2 WhD       ·    Next Vol+ ·   ·
-·  M← M↓ M→ WhU       ·    Prev Play ·    ·
-·  ·  ·  ·  ·         ·    ·    Vol- ·   ·
-```
+Home-row mods (CAGS, pinky→index): `A`=Ctrl `S`=Alt `D`=Gui `F`=Shift / `J`=Shift `K`=Gui `L`=Alt `'`=Ctrl.
+Caps Word (`CW_TOGG`) is on the right index home key (`J` position) in Sym.
 
 ## Why it's set up this way
 
