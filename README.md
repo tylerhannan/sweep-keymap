@@ -42,7 +42,7 @@ Caps Word (`CW_TOGG`) is on the right index home key (`J` position) in Sym.
 ## Why it's set up this way
 
 - Operators left / brackets right so common code sequences (`= (`, `=>`, `: [`) alternate hands.
-- Vertical bracket stack: open on the ring, close on the pinky.
+- Vertical bracket stack: open on the ring, close on the pinky, running round → square → curly.
 - `=` on the left index (strongest finger), since it's the most-typed operator.
 - CAGS mod order (Ctrl-Alt-Gui-Shift, pinky→index), with Shift on the index and Ctrl out on the pinky.
 
