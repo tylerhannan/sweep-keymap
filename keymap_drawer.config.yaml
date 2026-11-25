@@ -1,6 +1,7 @@
 # keymap-drawer settings for docs/keymap.svg (see scripts/draw_keymap.py).
 draw_config:
-  n_columns: 2
+  n_columns: 1
+  dark_mode: auto
   combo_w: 32
   combo_h: 26
 parse_config:
