@@ -1,0 +1,172 @@
+layout:
+  qmk_keyboard: ferris/sweep
+  layout_name: LAYOUT_split_3x5_2
+layers:
+  Base:
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - t: A
+    h: Ctrl
+  - t: S
+    h: Alt
+  - t: D
+    h: Gui
+  - t: F
+    h: Shift
+  - G
+  - H
+  - t: J
+    h: Shift
+  - t: K
+    h: Gui
+  - t: L
+    h: Alt
+  - t: ''''
+    h: Ctrl
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - N
+  - M
+  - ','
+  - .
+  - /
+  - Nav
+  - Space
+  - t: ⏎
+    h: Hyper
+  - Sym
+  Nav:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '0'
+  - Esc
+  - ''
+  - ''
+  - ''
+  - ''
+  - ←
+  - ↓
+  - ↑
+  - →
+  - ⌫
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - type: held
+  - t: ▽
+    type: trans
+  - t: ▽
+    type: trans
+  - Mouse
+  Sym:
+  - '!'
+  - '@'
+  - '#'
+  - $
+  - '%'
+  - ^
+  - '&'
+  - '*'
+  - (
+  - )
+  - ':'
+  - _
+  - '-'
+  - '='
+  - +
+  - ''
+  - Caps Word
+  - ''
+  - '['
+  - ']'
+  - ;
+  - '~'
+  - '`'
+  - \
+  - '|'
+  - ''
+  - ''
+  - ''
+  - '{'
+  - '}'
+  - Mouse
+  - t: ▽
+    type: trans
+  - t: ▽
+    type: trans
+  - type: held
+  Mouse:
+  - ''
+  - L click
+  - Mouse ↑
+  - R click
+  - Wheel ↓
+  - ''
+  - ''
+  - Vol +
+  - Next
+  - ''
+  - ''
+  - Mouse ←
+  - Mouse ↓
+  - Mouse →
+  - Wheel ↑
+  - ''
+  - ''
+  - Play
+  - Prev
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - Vol −
+  - ''
+  - ''
+  - type: held
+  - t: ▽
+    type: trans
+  - t: ▽
+    type: trans
+  - type: held
+combos:
+- p:
+  - 7
+  - 8
+  k: ⌫
+  l:
+  - Base
+- p:
+  - 0
+  - 1
+  k: Tab
+  l:
+  - Base

@@ -24,6 +24,12 @@ There's no PCB reset button, and the Helios sits flush, so bootloader entry is s
 
 QWERTY base with home-row mods.
 
+![Keymap: Base, Nav, Sym, and Mouse layers](docs/keymap.svg)
+
+The drawing is generated from `vial/sweep.vil` with [keymap-drawer](https://github.com/caksoylar/keymap-drawer).
+A GitHub Action redraws it whenever the `.vil` changes; to redraw locally, run `uv run scripts/draw_keymap.py`.
+Labels live in `keymap_drawer.config.yaml`.
+
 ### Layer 0: Base
 ```
 Q  W  E  R  T        Y  U  I  O  P

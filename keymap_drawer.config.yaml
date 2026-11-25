@@ -1,0 +1,62 @@
+# keymap-drawer settings for docs/keymap.svg (see scripts/draw_keymap.py).
+draw_config:
+  n_columns: 2
+  combo_w: 32
+  combo_h: 26
+parse_config:
+  trans_legend: {t: ▽, type: trans}
+  layer_legend_map:
+    Nav: Nav
+    Sym: Sym
+    Mouse: Mouse
+  raw_binding_map:
+    KC_ESCAPE: Esc
+    KC_BSPC: ⌫
+    KC_TAB: Tab
+    KC_SPACE: Space
+    KC_LEFT: ←
+    KC_DOWN: ↓
+    KC_UP: ↑
+    KC_RIGHT: →
+    ALL_T(KC_ENTER): {t: ⏎, h: Hyper}
+    CW_TOGG: Caps Word
+    LSFT(KC_1): '!'
+    LSFT(KC_2): '@'
+    LSFT(KC_3): '#'
+    LSFT(KC_4): $
+    LSFT(KC_5): '%'
+    LSFT(KC_6): ^
+    LSFT(KC_7): '&'
+    LSFT(KC_8): '*'
+    LSFT(KC_9): (
+    LSFT(KC_0): )
+    LSFT(KC_SCLN): ':'
+    LSFT(KC_MINUS): _
+    LSFT(KC_EQUAL): +
+    LSFT(KC_GRAVE): '~'
+    LSFT(KC_BSLS): '|'
+    LSFT(KC_LBRC): '{'
+    LSFT(KC_RBRC): '}'
+    KC_BTN1: L click
+    KC_BTN2: R click
+    KC_MS_U: Mouse ↑
+    KC_MS_D: Mouse ↓
+    KC_MS_L: Mouse ←
+    KC_MS_R: Mouse →
+    KC_WH_U: Wheel ↑
+    KC_WH_D: Wheel ↓
+    KC_VOLU: Vol +
+    KC_VOLD: Vol −
+    KC_MPLY: Play
+    KC_MFFD: Next
+    KC_MRWD: Prev
+    KC_MNXT: Next
+    KC_MPRV: Prev
+    LCTL_T(KC_A): {t: A, h: Ctrl}
+    LALT_T(KC_S): {t: S, h: Alt}
+    LGUI_T(KC_D): {t: D, h: Gui}
+    LSFT_T(KC_F): {t: F, h: Shift}
+    RSFT_T(KC_J): {t: J, h: Shift}
+    RGUI_T(KC_K): {t: K, h: Gui}
+    RALT_T(KC_L): {t: L, h: Alt}
+    RCTL_T(KC_QUOTE): {t: "'", h: Ctrl}
