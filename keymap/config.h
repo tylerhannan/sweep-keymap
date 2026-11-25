@@ -23,8 +23,8 @@
  */
 
 // Default/reset value for the runtime (Vial QMK Settings) tapping term.
-// Tuned to 275 ms after testing; adjust live in Vial, this is just the reset.
-#define TAPPING_TERM 275
+// Tuned to 290 ms after testing; adjust live in Vial, this is just the reset.
+#define TAPPING_TERM 290
 
 // Keep TAPPING_TERM_PER_KEY defined so QMK routes the term through vial.c's
 // get_tapping_term(), which is what makes the Vial QMK Settings slider (and

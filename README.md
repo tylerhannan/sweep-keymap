@@ -14,7 +14,11 @@ Personal keymap, firmware config, and notes for my 34-key Ferris Sweep Bling LP
 | Firmware | Vial-QMK (`CONVERT_TO=helios` over `ferris/sweep`) |
 
 There's no PCB reset button, and the Helios sits flush, so bootloader entry is software-only
-(see *Flashing* below). Don't flash a firmware without a bootloader key bound.
+(see *Flashing* below).
+
+> **Note:** The `QK_BOOT` keys have been removed from the layout to prevent accidental use.
+> To flash, bind `QK_BOOT` again in Vial first (live over USB, no flash needed) on each half,
+> then remove it once you're done.
 
 ## Layout
 
@@ -40,8 +44,8 @@ Esc ·  ·  ·  ·        ←  ↓  ↑  →  Bksp
 ### Layer 2: Symbols  (hold right thumb, MO2)
 ```
 !  @  #  $  %        ^  &  *  (  )
-:  +  -  =  _        ·  CW ·  [  ]
-;  `  ~  |  \        ·  ·  ·  {  }
+:  _  -  =  +        ·  CW ·  [  ]
+;  ~  `  \  |        ·  ·  ·  {  }
 ```
 Brackets stack vertically: open on the ring, close on the pinky, running round → square → curly.
 `CW` (right index home, `J` position) = Caps Word toggle (`CW_TOGG`).
@@ -66,13 +70,13 @@ Tuned to minimize accidental home-row mods:
 
 | Setting | Value |
 |---|---|
-| Tapping Term | 275 ms (set live in Vial; compile-time default 275) |
+| Tapping Term | 290 ms (set live in Vial; compile-time default 290) |
 | Permissive Hold | on (runtime, via QMK Settings) |
 | Mod-tap interrupt | QMK default (hold not selected on interrupt) |
 | Retro Tapping | off |
 
 The tapping term is a single global value, tunable at runtime from Vial's QMK
-Settings (no reflash); currently 275 ms. Permissive Hold is enabled (also a
+Settings (no reflash); currently 290 ms. Permissive Hold is enabled (also a
 runtime QMK Setting) to favour intended chords on the home-row mods. A static
 per-finger split (longer term on the pinky/ring mods) is a documented
 follow-up — see [`docs/per-finger-tapping-term.md`](docs/per-finger-tapping-term.md).
@@ -86,7 +90,6 @@ These live in code rather than the Vial GUI. The source is committed here (`keym
 but it only takes effect once the next firmware build is flashed (see *TODO* below):
 
 - Caps Word: `CAPS_WORD_ENABLE = yes` in `rules.mk`, bound to `CW_TOGG`. Auto-ends on space, so it's good for `SCREAMING_SNAKE_CASE`.
-- Bootloader keys: covered under Flashing.
 
 ## Flashing
 
@@ -104,7 +107,9 @@ qmk compile -kb ferris/sweep -km <me>
 
 Then per half:
 1. Plug in one half via USB.
-2. Enter bootloader in software (no buttons, since the controller is flush):
+2. Enter bootloader in software (no buttons, since the controller is flush).
+   The `QK_BOOT` keys are not bound by default (see the note under *Hardware*), so bind them
+   in Vial first, on these keys:
    - Left half: hold left thumb (MO1) → Layer 1 → tap the bootloader key (bottom-left pinky).
    - Right half: hold right thumb (MO2) → Layer 2 → tap the bootloader key (innermost bottom-row key).
    - Keycode is `QK_BOOT` ("Bootloader" in Vial), not `QK_REBOOT`.
@@ -127,15 +132,15 @@ Keep `sweep.vil` updated whenever you change layers, combos, or keymaps in the G
 
 The Vial layout lives in **each half's own EEPROM**, written live over USB (HID, so
 no flashing — this works even on a machine that blocks external media). For daily
-typing only the USB-connected (master) half needs it, **but each half must carry
-`QK_BOOT` to enter the bootloader when it's flashed alone** — so apply `sweep.vil`
-to both before relying on per-half flashing:
+typing only the USB-connected (master) half needs it, and since each half has its
+own EEPROM, apply `sweep.vil` to both:
 
 1. Plug in the **left** half alone → Vial → File → Import → `vial/sweep.vil`.
 2. Plug in the **right** half alone → Vial → Import → `vial/sweep.vil` again.
 
-`QK_BOOT` is a standard keycode that also works on the *current* firmware, so do this
-first — it's what gets you into the bootloader to flash the new build.
+Before flashing, bind `QK_BOOT` again on each half the same way (plug in that half alone,
+edit the key in Vial). It's a standard keycode that works on the current firmware, so it gets
+you into the bootloader to flash the new build.
 
 ## TODO (next firmware build)
 
@@ -178,3 +183,4 @@ external media; flash from an unrestricted computer):
 - _2026-06-14_ Fixed a mirrored right half: the original `.vil` export had the right-hand columns (alphas rows 4–6 and the two thumbs) entered in reverse order, so the right side typed mirrored. Reversed them in `vial/sweep.vil` and regenerated `keymap.c` to match the firmware's `LAYOUT_split_3x5_2` matrix (right index = innermost).
 - _2026-06-14_ Bound Caps Word (`CW_TOGG`) on Layer 2; enabled Permissive Hold and set the tapping term to 275 ms (both runtime QMK Settings, persisted in `sweep.vil`). Aligned the compile-time `TAPPING_TERM` default to 275.
 - _2026-06-14_ Moved the Tab combo from `E+R` (a common, misfire-prone bigram) to `Q+W`, and relocated Caps Word to the right index home key.
+- _2026-11-10_ Swapped `+`/`_`, `` ` ``/`~`, and `\`/`|` on Layer 2 (`+` now sits next to `=`). Removed both `QK_BOOT` keys to prevent accidental use (bind them again in Vial before flashing). Raised the tapping term to 290 ms.
