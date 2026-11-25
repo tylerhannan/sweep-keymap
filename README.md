@@ -32,9 +32,9 @@ Labels live in `keymap_drawer.config.yaml`.
 
 Getting to each layer:
 
-- Nav (numbers and arrows): hold the left inner thumb (`MO1`).
-- Sym: hold the right inner thumb (`MO2`).
-- Mouse / Media: hold both layer thumbs (`MO3` sits on the other thumb in Nav and Sym).
+- Nav (numbers and arrows): hold the left outer thumb (`MO1`).
+- Sym: hold the right outer thumb (`MO2`).
+- Mouse / Media: hold both outer thumbs (`MO3` sits on the other thumb in Nav and Sym).
 
 Home-row mods (CAGS, pinky→index): `A`=Ctrl `S`=Alt `D`=Gui `F`=Shift / `J`=Shift `K`=Gui `L`=Alt `'`=Ctrl.
 Caps Word (`CW_TOGG`) is on the right index home key (`J` position) in Sym.
